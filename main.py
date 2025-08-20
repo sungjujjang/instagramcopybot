@@ -27,6 +27,10 @@ def verify():
         return request.args.get("hub.challenge"), 200
     return "fail", 403
 
+@app.get("/ping")
+def ping():
+    return "pong", 200
+
 def verify_signature(req):
     sig = request.headers.get("X-Hub-Signature-256", "")
     if not sig.startswith("sha256="):
